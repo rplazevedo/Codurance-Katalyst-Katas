@@ -6,9 +6,11 @@
 # @Email    : rplazevedo@gmail.com
 # @Software : PyCharm
 
-def fizz_buzz(number: int) -> str:
-    if number % 3 == 0:
-        return "Fizz"
-    if number % 5 == 0:
+def fizz_buzz(number) -> str:
+    if number % 15 == 0:
+        return "FizzBuzz"
+    elif number % 5 == 0:
         return "Buzz"
+    elif number % 3 == 0:
+        return "Fizz"
     return str(number)
