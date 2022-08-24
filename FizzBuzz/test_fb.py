@@ -1,13 +1,7 @@
 from FizzBuzz import fizz_buzz as fb
+import pytest
 
 
-def test_1_to_1():
-    assert fb(1) == '1'
-
-
-def test_2_to_2():
-    assert fb(2) == '2'
-
-
-def test_4_to_4():
-    assert fb(4) == '4'
+@pytest.mark.parametrize("test_input,expected", [(1, '1'), (2, '2'), (4, '4')])
+def test_number_to_string(test_input, expected):
+    assert fb(test_input) == expected
