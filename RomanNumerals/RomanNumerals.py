@@ -16,7 +16,7 @@ class RomanNumerals:
         if div_5_remain <= 3:
             return RomanNumerals.mult_5_converter(number-div_5_remain) \
                    + div_5_remain * "I"
-        elif div_5_remain == 4:
+        else:
             close_mult_5 = RomanNumerals.mult_5_converter(number+1)
             return RomanNumerals.insert_i_before_last_char(close_mult_5)
 
@@ -28,7 +28,8 @@ class RomanNumerals:
             return "X"
         elif numb == 5:
             return "V"
-        return ""
+        else:
+            return ""
 
     @staticmethod
     def insert_i_before_last_char(numeral: str) -> str:
