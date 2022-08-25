@@ -12,18 +12,23 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
-        if number >= 15:
-            return "XV" + (number-15) * "I"
+        div_5_remain = number % 5
+        if div_5_remain <= 3:
+            return RomanNumerals.mult_5_converter(number - div_5_remain) \
+                   + div_5_remain * "I"
         elif number == 14:
             return "XIV"
-        elif number >= 10:
-            return "X" + (number-10) * "I"
         elif number == 9:
             return "IX"
-        elif number >= 5:
-            return "V" + (number-5) * "I"
         elif number == 4:
             return "IV"
-        return number * "I"
 
-
+    @staticmethod
+    def mult_5_converter(numb: int) -> str:
+        if numb == 15:
+            return "XV"
+        elif numb == 10:
+            return "X"
+        elif numb == 5:
+            return "V"
+        return ""
