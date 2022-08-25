@@ -14,14 +14,11 @@ class RomanNumerals:
     def convert_arabic(number: int) -> str:
         div_5_remain = number % 5
         if div_5_remain <= 3:
-            return RomanNumerals.mult_5_converter(number - div_5_remain) \
+            return RomanNumerals.mult_5_converter(number-div_5_remain) \
                    + div_5_remain * "I"
-        elif number == 14:
-            return "XIV"
-        elif number == 9:
-            return "IX"
-        elif number == 4:
-            return "IV"
+        elif div_5_remain == 4:
+            close_mult_5 = RomanNumerals.mult_5_converter(number+1)
+            return RomanNumerals.insert_i_before_last_char(close_mult_5)
 
     @staticmethod
     def mult_5_converter(numb: int) -> str:
@@ -32,3 +29,8 @@ class RomanNumerals:
         elif numb == 5:
             return "V"
         return ""
+
+    @staticmethod
+    def insert_i_before_last_char(numeral: str) -> str:
+        last_char = numeral[-1]
+        return numeral[:-1] + "I" + last_char
