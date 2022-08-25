@@ -26,4 +26,3 @@ class Year:
     @staticmethod
     def div_by_400(year: int) -> bool:
         return year % 400 == 0
-
