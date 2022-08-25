@@ -50,6 +50,6 @@ def test_convert_14():
 
 
 @pytest.mark.parametrize("input_number,expected_numeral",
-                         [(15, "XV"), (16, "XVI")])
+                         [(15, "XV"), (16, "XVI"), (17, "XVII")])
 def test_convert_15_to_18(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral
