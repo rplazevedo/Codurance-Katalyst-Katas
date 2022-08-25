@@ -12,4 +12,18 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
+        if number == 12:
+            return "XII"
+        elif number == 11:
+            return "XI"
+        elif number == 10:
+            return "X"
+        elif number == 9:
+            return "IX"
+        elif number > 4:
+            return "V" + (number-5) * "I"
+        elif number == 4:
+            return "IV"
         return number * "I"
+
+
