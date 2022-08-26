@@ -15,20 +15,9 @@ class RomanNumerals:
 
         numeral = ""
 
-        div_90_quot, div_90_remain = divmod(number, 90)
-        if div_90_quot:
-            numeral += "XC"
-            number = div_90_remain
-
-        div_50_quot, div_50_remain = divmod(number, 50)
-        if div_50_quot:
-            numeral += "L"
-            number = div_50_remain
-
-        div_40_quot, div_40_remain = divmod(number, 40)
-        if div_40_quot:
-            numeral += "XL"
-            number = div_40_remain
+        number, numeral = RomanNumerals.check_for_90s(number, numeral)
+        number, numeral = RomanNumerals.check_for_50s(number, numeral)
+        number, numeral = RomanNumerals.check_for_40s(number, numeral)
 
         div_10_quot, div_10_remain = divmod(number, 10)
         if div_10_remain <= 8:
@@ -45,6 +34,27 @@ class RomanNumerals:
         else:
             numeral += "IV"
             return numeral
+
+    @staticmethod
+    def check_for_90s(numb: int, rom_numer: str) -> tuple[int, str]:
+        return RomanNumerals.check_for_mult(numb, rom_numer, 90, "XC")
+
+    @staticmethod
+    def check_for_50s(numb: int, rom_numer: str) -> tuple[int, str]:
+        return RomanNumerals.check_for_mult(numb, rom_numer, 50, "L")
+
+    @staticmethod
+    def check_for_40s(numb: int, rom_numer: str) -> tuple[int, str]:
+        return RomanNumerals.check_for_mult(numb, rom_numer, 40, "XL")
+
+    @staticmethod
+    def check_for_mult(numb: int, rom_num: str, divisor: int, rn_to_add: str)\
+            -> tuple[int, str]:
+        div_quot, div_remain = divmod(numb, divisor)
+        if div_quot:
+            rom_num += rn_to_add
+            numb = div_remain
+        return numb, rom_num
 
     @staticmethod
     def mult_10_converter(numb: int) -> str:

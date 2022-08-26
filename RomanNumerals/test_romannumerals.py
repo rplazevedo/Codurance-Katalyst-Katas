@@ -58,6 +58,7 @@ def test_convert_15_to_18(input_number: int, expected_numeral: str):
 def test_convert_19():
     assert Rn.convert_arabic(19) == "XIX"
 
+
 @pytest.mark.parametrize("input_number,expected_numeral",
                          [(20, "XX"), (21, "XXI"), (23, "XXIII"),
                           (24, "XXIV"), (25, "XXV"), (27, "XXVII")])
@@ -86,6 +87,7 @@ def test_convert_40():
 def test_convert_41_to_43(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral
 
+
 @pytest.mark.parametrize("input_number,expected_numeral",
                          [(44, "XLIV"), (45, "XLV"), (47, "XLVII"),
                           (49, "XLIX")])
@@ -102,6 +104,7 @@ def test_convert_50s(input_number: int, expected_numeral: str):
 
 def test_convert_64():
     assert Rn.convert_arabic(64) == "LXIV"
+
 
 def test_convert_89():
     assert Rn.convert_arabic(89) == "LXXXIX"
