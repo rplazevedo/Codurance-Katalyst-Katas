@@ -85,3 +85,15 @@ def test_convert_40():
                          [(41, "XLI"), (42, "XLII")])
 def test_convert_41_to_43(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral
+
+@pytest.mark.parametrize("input_number,expected_numeral",
+                         [(44, "XLIV"), (45, "XLV"), (47, "XLVII"),
+                          (49, "XLIX")])
+def test_convert_44_to_49(input_number: int, expected_numeral: str):
+    assert Rn.convert_arabic(input_number) == expected_numeral
+
+
+@pytest.mark.parametrize("input_number,expected_numeral",
+                         [(50, "L")])
+def test_convert_50_to_52(input_number: int, expected_numeral: str):
+    assert Rn.convert_arabic(input_number) == expected_numeral
