@@ -39,15 +39,13 @@ class RomanNumerals:
             numeral += RomanNumerals.insert_i_before_last_char(close_mult_10)
             return numeral
 
-        div_5_remain = number % 5
+        div_5_quot, div_5_remain = divmod(number, 5)
         if div_5_remain <= 3:
-            return (numeral
-                    + RomanNumerals.mult_5_converter(number - div_5_remain)
-                    + div_5_remain * "I")
+            numeral += div_5_quot * "V" + div_5_remain * "I"
+            return numeral
         else:
-            close_mult_5 = RomanNumerals.mult_5_converter(div_5_remain+1)
-            return (numeral
-                    + RomanNumerals.insert_i_before_last_char(close_mult_5))
+            numeral += "IV"
+            return numeral
 
     @staticmethod
     def mult_10_converter(numb: int) -> str:
