@@ -82,6 +82,6 @@ def test_convert_40():
 
 
 @pytest.mark.parametrize("input_number,expected_numeral",
-                         [(41, "XLI")])
+                         [(41, "XLI"), (42, "XLII")])
 def test_convert_41_to_43(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral

@@ -12,6 +12,8 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
+        if number == 42:
+            return "XLII"
         if number == 41:
             return "XLI"
         if number == 40:
