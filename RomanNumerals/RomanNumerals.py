@@ -14,8 +14,8 @@ class RomanNumerals:
     def convert_arabic(number: int) -> str:
         numeral = ""
 
-        divisor_list = [500, 400, 100, 90, 50, 40, 10]
-        div_numer_list = ["D", "CD", "C", "XC", "L", "XL", "X"]
+        divisor_list = [1000, 900, 500, 400, 100, 90, 50, 40, 10]
+        div_numer_list = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X"]
         for divisor, div_numer in zip(divisor_list, div_numer_list):
             number, numeral = RomanNumerals.check_for_mult(number, numeral,
                                                            divisor, div_numer)
