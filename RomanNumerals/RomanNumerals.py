@@ -22,7 +22,9 @@ class RomanNumerals:
 
     @staticmethod
     def mult_5_converter(numb: int) -> str:
-        if numb == 20:
+        if numb == 25:
+            return "XXV"
+        elif numb == 20:
             return "XX"
         elif numb == 15:
             return "XV"
