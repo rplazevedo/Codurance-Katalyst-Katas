@@ -98,3 +98,16 @@ def test_convert_44_to_49(input_number: int, expected_numeral: str):
                           (54, "LIV"), (56, "LVI"), (59, "LIX")])
 def test_convert_50s(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral
+
+
+def test_convert_64():
+    assert Rn.convert_arabic(64) == "LXIV"
+
+def test_convert_89():
+    assert Rn.convert_arabic(89) == "LXXXIX"
+
+
+@pytest.mark.parametrize("input_number,expected_numeral",
+                         [(90, "XC")])
+def test_convert_90s(input_number: int, expected_numeral: str):
+    assert Rn.convert_arabic(input_number) == expected_numeral
