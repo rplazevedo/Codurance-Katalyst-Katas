@@ -30,13 +30,12 @@ class RomanNumerals:
             numeral += "XL"
             number = div_40_remain
 
-        div_10_remain = number % 10
+        div_10_quot, div_10_remain = divmod(number, 10)
         if div_10_remain <= 8:
-            numeral += RomanNumerals.mult_10_converter(number)
+            numeral += div_10_quot * "X"
             number = div_10_remain
-        elif div_10_remain == 9:
-            close_mult_10 = RomanNumerals.mult_10_converter(number+1)
-            numeral += RomanNumerals.insert_i_before_last_char(close_mult_10)
+        else:
+            numeral += div_10_quot * "X" + "IX"
             return numeral
 
         div_5_quot, div_5_remain = divmod(number, 5)
