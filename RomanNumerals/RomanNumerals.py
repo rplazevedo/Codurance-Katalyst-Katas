@@ -12,17 +12,11 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
-        if number == 102:
-            return "CII"
-        if number == 101:
-            return "CI"
-        if number == 100:
-            return "C"
         numeral = ""
+        number, numeral = RomanNumerals.check_for_100s(number, numeral)
         number, numeral = RomanNumerals.check_for_90s(number, numeral)
         number, numeral = RomanNumerals.check_for_50s(number, numeral)
         number, numeral = RomanNumerals.check_for_40s(number, numeral)
-
         div_10_quot, div_10_remain = divmod(number, 10)
         if div_10_remain <= 8:
             numeral += div_10_quot * "X"
@@ -30,7 +24,6 @@ class RomanNumerals:
         else:
             numeral += div_10_quot * "X" + "IX"
             return numeral
-
         div_5_quot, div_5_remain = divmod(number, 5)
         if div_5_remain <= 3:
             numeral += div_5_quot * "V" + div_5_remain * "I"
@@ -38,6 +31,10 @@ class RomanNumerals:
         else:
             numeral += "IV"
             return numeral
+
+    @staticmethod
+    def check_for_100s(numb: int, rom_numer: str) -> tuple[int, str]:
+        return RomanNumerals.check_for_mult(numb, rom_numer, 100, "C")
 
     @staticmethod
     def check_for_90s(numb: int, rom_numer: str) -> tuple[int, str]:
