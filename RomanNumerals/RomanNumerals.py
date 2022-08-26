@@ -18,25 +18,34 @@ class RomanNumerals:
             return "XLI"
         if number == 40:
             return "XL"
-        div_5_remain = number % 5
-        if div_5_remain <= 3:
-            return RomanNumerals.mult_5_converter(number-div_5_remain) \
-                   + div_5_remain * "I"
-        else:
-            close_mult_5 = RomanNumerals.mult_5_converter(number+1)
-            return RomanNumerals.insert_i_before_last_char(close_mult_5)
 
-    @staticmethod
-    def mult_5_converter(numb: int) -> str:
-        div_10_remain = numb % 10
-        if div_10_remain == 0:
-            return RomanNumerals.mult_10_converter(numb)
+        numeral = ""
+        div_10_remain = number % 10
+        if div_10_remain <= 8:
+            numeral += RomanNumerals.mult_10_converter(number-div_10_remain)
+        elif div_10_remain == 9:
+            close_mult_10 = RomanNumerals.mult_10_converter(number+1)
+            numeral += RomanNumerals.insert_i_before_last_char(close_mult_10)
+            return numeral
+
+        div_5_remain = div_10_remain % 5
+        if div_5_remain <= 3:
+            return (numeral
+                    + RomanNumerals.mult_5_converter(div_10_remain
+                                                     - div_5_remain)
+                    + div_5_remain * "I")
         else:
-            return RomanNumerals.mult_10_converter(numb) + "V"
+            close_mult_5 = RomanNumerals.mult_5_converter(div_5_remain+1)
+            return (numeral
+                    + RomanNumerals.insert_i_before_last_char(close_mult_5))
 
     @staticmethod
     def mult_10_converter(numb: int) -> str:
         return (numb // 10) * "X"
+
+    @staticmethod
+    def mult_5_converter(numb: int) -> str:
+        return (numb // 5) * "V"
 
     @staticmethod
     def insert_i_before_last_char(numeral: str) -> str:
