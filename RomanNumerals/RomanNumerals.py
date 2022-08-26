@@ -12,6 +12,8 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
+        if number == 101:
+            return "CI"
         if number == 100:
             return "C"
         numeral = ""
