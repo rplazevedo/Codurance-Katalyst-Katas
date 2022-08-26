@@ -126,6 +126,18 @@ def test_convert_100s(input_number: int, expected_numeral: str):
 
 
 @pytest.mark.parametrize("input_number,expected_numeral",
-                         [(200, "CC")])
+                         [(200, "CC"), (299, "CCXCIX")])
 def test_convert_200s(input_number: int, expected_numeral: str):
+    assert Rn.convert_arabic(input_number) == expected_numeral
+
+
+@pytest.mark.parametrize("input_number,expected_numeral",
+                         [(400, "CD"), (408, "CDVIII"), (499, "CDXCIX")])
+def test_convert_400s(input_number: int, expected_numeral: str):
+    assert Rn.convert_arabic(input_number) == expected_numeral
+
+
+@pytest.mark.parametrize("input_number,expected_numeral",
+                         [(500, "D"), (501, "DI")])
+def test_convert_500(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral

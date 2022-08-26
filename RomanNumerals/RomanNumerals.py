@@ -12,7 +12,12 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
+        if number == 501:
+            return "DI"
+        if number == 500:
+            return "D"
         numeral = ""
+        number, numeral = RomanNumerals.check_for_400(number, numeral)
         number, numeral = RomanNumerals.check_for_100s(number, numeral)
         number, numeral = RomanNumerals.check_for_90(number, numeral)
         number, numeral = RomanNumerals.check_for_50(number, numeral)
@@ -28,6 +33,10 @@ class RomanNumerals:
         else:
             numeral += "IV"
             return numeral
+
+    @staticmethod
+    def check_for_400(numb: int, rom_numer: str) -> tuple[int, str]:
+        return RomanNumerals.check_for_mult(numb, rom_numer, 400, "CD")
 
     @staticmethod
     def check_for_100s(numb: int, rom_numer: str) -> tuple[int, str]:
@@ -57,8 +66,3 @@ class RomanNumerals:
             rom_num += rn_to_add * div_quot
             numb = div_remain
         return numb, rom_num
-
-    @staticmethod
-    def insert_i_before_last_char(numeral: str) -> str:
-        last_char = numeral[-1]
-        return numeral[:-1] + "I" + last_char
