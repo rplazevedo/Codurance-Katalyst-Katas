@@ -13,13 +13,12 @@ class RomanNumerals:
     @staticmethod
     def convert_arabic(number: int) -> str:
         numeral = ""
-        number, numeral = RomanNumerals.check_for_500(number, numeral)
-        number, numeral = RomanNumerals.check_for_400(number, numeral)
-        number, numeral = RomanNumerals.check_for_100s(number, numeral)
-        number, numeral = RomanNumerals.check_for_90(number, numeral)
-        number, numeral = RomanNumerals.check_for_50(number, numeral)
-        number, numeral = RomanNumerals.check_for_40(number, numeral)
-        number, numeral = RomanNumerals.check_for_10s(number, numeral)
+
+        divisor_list = [500, 400, 100, 90, 50, 40, 10]
+        div_numer_list = ["D", "CD", "C", "XC", "L", "XL", "X"]
+        for divisor, div_numer in zip(divisor_list, div_numer_list):
+            number, numeral = RomanNumerals.check_for_mult(number, numeral,
+                                                           divisor, div_numer)
         if number // 9:
             numeral += "IX"
             return numeral
@@ -30,34 +29,6 @@ class RomanNumerals:
         else:
             numeral += "IV"
             return numeral
-
-    @staticmethod
-    def check_for_500(numb: int, rom_numer: str) -> tuple[int, str]:
-        return RomanNumerals.check_for_mult(numb, rom_numer, 500, "D")
-
-    @staticmethod
-    def check_for_400(numb: int, rom_numer: str) -> tuple[int, str]:
-        return RomanNumerals.check_for_mult(numb, rom_numer, 400, "CD")
-
-    @staticmethod
-    def check_for_100s(numb: int, rom_numer: str) -> tuple[int, str]:
-        return RomanNumerals.check_for_mult(numb, rom_numer, 100, "C")
-
-    @staticmethod
-    def check_for_90(numb: int, rom_numer: str) -> tuple[int, str]:
-        return RomanNumerals.check_for_mult(numb, rom_numer, 90, "XC")
-
-    @staticmethod
-    def check_for_50(numb: int, rom_numer: str) -> tuple[int, str]:
-        return RomanNumerals.check_for_mult(numb, rom_numer, 50, "L")
-
-    @staticmethod
-    def check_for_40(numb: int, rom_numer: str) -> tuple[int, str]:
-        return RomanNumerals.check_for_mult(numb, rom_numer, 40, "XL")
-
-    @staticmethod
-    def check_for_10s(numb: int, rom_numer: str) -> tuple[int, str]:
-        return RomanNumerals.check_for_mult(numb, rom_numer, 10, "X")
 
     @staticmethod
     def check_for_mult(numb: int, rom_num: str, divisor: int, rn_to_add: str)\
