@@ -79,3 +79,9 @@ def test_convert_39():
 
 def test_convert_40():
     assert Rn.convert_arabic(40) == "XL"
+
+
+@pytest.mark.parametrize("input_number,expected_numeral",
+                         [(41, "XLI")])
+def test_convert_41_to_43(input_number: int, expected_numeral: str):
+    assert Rn.convert_arabic(input_number) == expected_numeral
