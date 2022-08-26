@@ -12,27 +12,25 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
-        if number == 42:
-            return "XLII"
-        if number == 41:
-            return "XLI"
-        if number == 40:
-            return "XL"
-
         numeral = ""
+        div_40_quot, div_40_remain = divmod(number, 40)
+        if div_40_quot:
+            numeral += "XL"
+            number = div_40_remain
+
         div_10_remain = number % 10
         if div_10_remain <= 8:
-            numeral += RomanNumerals.mult_10_converter(number-div_10_remain)
+            numeral += RomanNumerals.mult_10_converter(number)
+            number = div_10_remain
         elif div_10_remain == 9:
             close_mult_10 = RomanNumerals.mult_10_converter(number+1)
             numeral += RomanNumerals.insert_i_before_last_char(close_mult_10)
             return numeral
 
-        div_5_remain = div_10_remain % 5
+        div_5_remain = number % 5
         if div_5_remain <= 3:
             return (numeral
-                    + RomanNumerals.mult_5_converter(div_10_remain
-                                                     - div_5_remain)
+                    + RomanNumerals.mult_5_converter(number - div_5_remain)
                     + div_5_remain * "I")
         else:
             close_mult_5 = RomanNumerals.mult_5_converter(div_5_remain+1)
