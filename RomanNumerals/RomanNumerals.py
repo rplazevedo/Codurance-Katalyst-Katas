@@ -14,15 +14,12 @@ class RomanNumerals:
     def convert_arabic(number: int) -> str:
         numeral = ""
         number, numeral = RomanNumerals.check_for_100s(number, numeral)
-        number, numeral = RomanNumerals.check_for_90s(number, numeral)
-        number, numeral = RomanNumerals.check_for_50s(number, numeral)
-        number, numeral = RomanNumerals.check_for_40s(number, numeral)
-        div_10_quot, div_10_remain = divmod(number, 10)
-        if div_10_remain <= 8:
-            numeral += div_10_quot * "X"
-            number = div_10_remain
-        else:
-            numeral += div_10_quot * "X" + "IX"
+        number, numeral = RomanNumerals.check_for_90(number, numeral)
+        number, numeral = RomanNumerals.check_for_50(number, numeral)
+        number, numeral = RomanNumerals.check_for_40(number, numeral)
+        number, numeral = RomanNumerals.check_for_10s(number, numeral)
+        if number // 9:
+            numeral += "IX"
             return numeral
         div_5_quot, div_5_remain = divmod(number, 5)
         if div_5_remain <= 3:
@@ -37,33 +34,29 @@ class RomanNumerals:
         return RomanNumerals.check_for_mult(numb, rom_numer, 100, "C")
 
     @staticmethod
-    def check_for_90s(numb: int, rom_numer: str) -> tuple[int, str]:
+    def check_for_90(numb: int, rom_numer: str) -> tuple[int, str]:
         return RomanNumerals.check_for_mult(numb, rom_numer, 90, "XC")
 
     @staticmethod
-    def check_for_50s(numb: int, rom_numer: str) -> tuple[int, str]:
+    def check_for_50(numb: int, rom_numer: str) -> tuple[int, str]:
         return RomanNumerals.check_for_mult(numb, rom_numer, 50, "L")
 
     @staticmethod
-    def check_for_40s(numb: int, rom_numer: str) -> tuple[int, str]:
+    def check_for_40(numb: int, rom_numer: str) -> tuple[int, str]:
         return RomanNumerals.check_for_mult(numb, rom_numer, 40, "XL")
+
+    @staticmethod
+    def check_for_10s(numb: int, rom_numer: str) -> tuple[int, str]:
+        return RomanNumerals.check_for_mult(numb, rom_numer, 10, "X")
 
     @staticmethod
     def check_for_mult(numb: int, rom_num: str, divisor: int, rn_to_add: str)\
             -> tuple[int, str]:
         div_quot, div_remain = divmod(numb, divisor)
         if div_quot:
-            rom_num += rn_to_add
+            rom_num += rn_to_add * div_quot
             numb = div_remain
         return numb, rom_num
-
-    @staticmethod
-    def mult_10_converter(numb: int) -> str:
-        return (numb // 10) * "X"
-
-    @staticmethod
-    def mult_5_converter(numb: int) -> str:
-        return (numb // 5) * "V"
 
     @staticmethod
     def insert_i_before_last_char(numeral: str) -> str:

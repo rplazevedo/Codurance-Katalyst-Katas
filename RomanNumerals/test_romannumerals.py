@@ -123,3 +123,9 @@ def test_convert_90s(input_number: int, expected_numeral: str):
                           (199, "CXCIX")])
 def test_convert_100s(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral
+
+
+@pytest.mark.parametrize("input_number,expected_numeral",
+                         [(200, "CC")])
+def test_convert_200s(input_number: int, expected_numeral: str):
+    assert Rn.convert_arabic(input_number) == expected_numeral
