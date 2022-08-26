@@ -14,21 +14,24 @@ class RomanNumerals:
     def convert_arabic(number: int) -> str:
         numeral = ""
 
-        divisor_list = [1000, 900, 500, 400, 100, 90, 50, 40, 10]
-        div_numer_list = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X"]
-        for divisor, div_numer in zip(divisor_list, div_numer_list):
+        div_num_tup = ((1000, "M"),
+                       (900, "CM"),
+                       (500, "D"),
+                       (400, "CD"),
+                       (100, "C"),
+                       (90, "XC"),
+                       (50, "L"),
+                       (40, "XL"),
+                       (10, "X"),
+                       (9, "IX"),
+                       (5, "V"),
+                       (4, "IV"),
+                       (1, "I"))
+
+        for divisor, div_numer in div_num_tup:
             number, numeral = RomanNumerals.check_for_mult(number, numeral,
                                                            divisor, div_numer)
-        if number // 9:
-            numeral += "IX"
-            return numeral
-        div_5_quot, div_5_remain = divmod(number, 5)
-        if div_5_remain <= 3:
-            numeral += div_5_quot * "V" + div_5_remain * "I"
-            return numeral
-        else:
-            numeral += "IV"
-            return numeral
+        return numeral
 
     @staticmethod
     def check_for_mult(numb: int, rom_num: str, divisor: int, rn_to_add: str)\

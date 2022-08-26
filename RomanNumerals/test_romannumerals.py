@@ -148,7 +148,8 @@ def test_convert_500(input_number: int, expected_numeral: str):
 def test_convert_900(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral
 
+
 @pytest.mark.parametrize("input_number,expected_numeral",
-                         [(1000, "M")])
+                         [(1000, "M"), (2008, "MMVIII"), (4000, "MMMM")])
 def test_convert_1000(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral
