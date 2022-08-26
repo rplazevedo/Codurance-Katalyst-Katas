@@ -94,6 +94,6 @@ def test_convert_44_to_49(input_number: int, expected_numeral: str):
 
 
 @pytest.mark.parametrize("input_number,expected_numeral",
-                         [(50, "L")])
+                         [(50, "L"), (51, "LI")])
 def test_convert_50_to_52(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral
