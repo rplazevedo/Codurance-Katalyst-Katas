@@ -12,9 +12,9 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
-
+        if number == 100:
+            return "C"
         numeral = ""
-
         number, numeral = RomanNumerals.check_for_90s(number, numeral)
         number, numeral = RomanNumerals.check_for_50s(number, numeral)
         number, numeral = RomanNumerals.check_for_40s(number, numeral)
