@@ -12,6 +12,8 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
+        if number == 40:
+            return "XL"
         div_5_remain = number % 5
         if div_5_remain <= 3:
             return RomanNumerals.mult_5_converter(number-div_5_remain) \

@@ -60,6 +60,22 @@ def test_convert_19():
 
 @pytest.mark.parametrize("input_number,expected_numeral",
                          [(20, "XX"), (21, "XXI"), (23, "XXIII"),
-                          (24, "XXIV")])
-def test_convert_20_to_26(input_number: int, expected_numeral: str):
+                          (24, "XXIV"), (25, "XXV"), (27, "XXVII")])
+def test_convert_20_to_27(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral
+
+
+def test_convert_29():
+    assert Rn.convert_arabic(29) == "XXIX"
+
+
+def test_convert_38():
+    assert Rn.convert_arabic(38) == "XXXVIII"
+
+
+def test_convert_39():
+    assert Rn.convert_arabic(39) == "XXXIX"
+
+
+def test_convert_40():
+    assert Rn.convert_arabic(40) == "XL"
