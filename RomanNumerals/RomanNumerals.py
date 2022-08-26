@@ -22,18 +22,15 @@ class RomanNumerals:
 
     @staticmethod
     def mult_5_converter(numb: int) -> str:
-        if numb == 25:
-            return "XXV"
-        elif numb == 20:
-            return "XX"
-        elif numb == 15:
-            return "XV"
-        elif numb == 10:
-            return "X"
-        elif numb == 5:
-            return "V"
+        div_10_remain = numb % 10
+        if div_10_remain == 0:
+            return RomanNumerals.mult_10_converter(numb)
         else:
-            return ""
+            return RomanNumerals.mult_10_converter(numb) + "V"
+
+    @staticmethod
+    def mult_10_converter(numb: int) -> str:
+        return (numb // 10) * "X"
 
     @staticmethod
     def insert_i_before_last_char(numeral: str) -> str:
