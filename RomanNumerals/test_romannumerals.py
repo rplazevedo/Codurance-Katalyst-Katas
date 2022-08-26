@@ -138,6 +138,6 @@ def test_convert_400s(input_number: int, expected_numeral: str):
 
 
 @pytest.mark.parametrize("input_number,expected_numeral",
-                         [(500, "D"), (501, "DI")])
+                         [(500, "D"), (501, "DI"), (502, "DII")])
 def test_convert_500(input_number: int, expected_numeral: str):
     assert Rn.convert_arabic(input_number) == expected_numeral

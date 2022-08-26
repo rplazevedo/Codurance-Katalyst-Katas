@@ -12,11 +12,8 @@ class RomanNumerals:
 
     @staticmethod
     def convert_arabic(number: int) -> str:
-        if number == 501:
-            return "DI"
-        if number == 500:
-            return "D"
         numeral = ""
+        number, numeral = RomanNumerals.check_for_500(number, numeral)
         number, numeral = RomanNumerals.check_for_400(number, numeral)
         number, numeral = RomanNumerals.check_for_100s(number, numeral)
         number, numeral = RomanNumerals.check_for_90(number, numeral)
@@ -33,6 +30,10 @@ class RomanNumerals:
         else:
             numeral += "IV"
             return numeral
+
+    @staticmethod
+    def check_for_500(numb: int, rom_numer: str) -> tuple[int, str]:
+        return RomanNumerals.check_for_mult(numb, rom_numer, 500, "D")
 
     @staticmethod
     def check_for_400(numb: int, rom_numer: str) -> tuple[int, str]:
