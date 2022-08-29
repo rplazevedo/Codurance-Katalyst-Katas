@@ -7,4 +7,6 @@
 # @Software : PyCharm
 
 class MarsRover:
-    raise Exception("Implement me!")
+    def __init__(self, x_init=0, y_init=0):
+        self.x: int = x_init
+        self.y: int = y_init
