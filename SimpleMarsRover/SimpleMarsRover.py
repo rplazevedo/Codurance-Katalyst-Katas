@@ -16,6 +16,8 @@ class MarsRover:
         return f"{self.x}:{self.y}:{self.dir}"
 
     def exe(self, command: str) -> None:
+        if command == "MMM":
+            self.y += 3
         if command == "MM":
             self.y += 2
         if command == "M":

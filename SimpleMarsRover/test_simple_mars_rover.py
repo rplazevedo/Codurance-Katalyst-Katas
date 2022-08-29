@@ -37,6 +37,10 @@ class RoverTestCase(unittest.TestCase):
         self.oppy.exe("MM")
         self.assertEqual(self.oppy.pos(), "0:2:N")
 
+    def test_exe_MMM(self):
+        self.oppy.exe("MMM")
+        self.assertEqual(self.oppy.pos(), "0:3:N")
+
 
 if __name__ == '__main__':
     unittest.main()
