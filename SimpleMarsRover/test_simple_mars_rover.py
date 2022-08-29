@@ -41,6 +41,38 @@ class RoverTestCase(unittest.TestCase):
         self.oppy.exe("MMM")
         self.assertEqual(self.oppy.pos(), "0:3:N")
 
+    def test_exe_R(self):
+        self.oppy.exe("R")
+        self.assertEqual(self.oppy.pos(), "0:0:E")
+
+    def test_exe_RR(self):
+        self.oppy.exe("RR")
+        self.assertEqual(self.oppy.pos(), "0:0:S")
+
+    def test_exe_RRR(self):
+        self.oppy.exe("RRR")
+        self.assertEqual(self.oppy.pos(), "0:0:W")
+
+    def test_exe_RRRR(self):
+        self.oppy.exe("RRRR")
+        self.assertEqual(self.oppy.pos(), "0:0:N")
+
+    def test_exe_R(self):
+        self.oppy.exe("R")
+        self.assertEqual(self.oppy.pos(), "0:0:E")
+
+    def test_exe_RR(self):
+        self.oppy.exe("RR")
+        self.assertEqual(self.oppy.pos(), "0:0:S")
+
+    def test_exe_RRR(self):
+        self.oppy.exe("RRR")
+        self.assertEqual(self.oppy.pos(), "0:0:W")
+
+    def test_exe_RRRR(self):
+        self.oppy.exe("RRRR")
+        self.assertEqual(self.oppy.pos(), "0:0:N")
+
 
 if __name__ == '__main__':
     unittest.main()
