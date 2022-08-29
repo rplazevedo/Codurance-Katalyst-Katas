@@ -83,19 +83,23 @@ class RoverTestCase(unittest.TestCase):
 
     def test_turn_right_2_move_1(self):
         self.oppy.exe("RRM")
-        self.assertEqual(self.oppy.pos(), "0:-1:S")
+        self.assertEqual(self.oppy.pos(), "0:9:S")
 
     def test_turn_right_2_move_4(self):
         self.oppy.exe("RRMMMM")
-        self.assertEqual(self.oppy.pos(), "0:-4:S")
+        self.assertEqual(self.oppy.pos(), "0:6:S")
 
     def test_turn_left_1_move_3(self):
         self.oppy.exe("LMMM")
-        self.assertEqual(self.oppy.pos(), "-3:0:W")
+        self.assertEqual(self.oppy.pos(), "7:0:W")
 
     def test_exe_MMRMMLM(self):
         self.oppy.exe("MMRMMLM")
         self.assertEqual(self.oppy.pos(), "2:3:N")
+
+    def test_wrap_around(self):
+        self.oppy.exe("MMMMMMMMMM")
+        self.assertEqual(self.oppy.pos(), "0:0:N")
 
 
 if __name__ == '__main__':

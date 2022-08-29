@@ -42,10 +42,10 @@ class MarsRover:
 
     def move(self):
         if self.dir == "N":
-            self.y += 1
+            self.y = (self.y + 1) % 10
         if self.dir == "E":
-            self.x += 1
+            self.x = (self.x + 1) % 10
         if self.dir == "S":
-            self.y -= 1
+            self.y = (self.y - 1) % 10
         if self.dir == "W":
-            self.x -= 1
+            self.x = (self.x - 1) % 10
