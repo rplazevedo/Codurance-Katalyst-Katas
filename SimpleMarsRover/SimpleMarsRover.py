@@ -26,7 +26,16 @@ class MarsRover:
 
     def exe_letter(self, letter: str) -> None:
         if letter == "R":
-            self.__dir_int = (self.__dir_int + 1) % 4
-            self.dir = self.dir_dic[self.__dir_int]
+            self.turn_right()
+        if letter == "L":
+            self.turn_left()
         if letter == "M":
             self.y += 1
+
+    def turn_right(self):
+        self.__dir_int = (self.__dir_int + 1) % 4
+        self.dir = self.dir_dic[self.__dir_int]
+
+    def turn_left(self):
+        self.__dir_int = (self.__dir_int - 1) % 4
+        self.dir = self.dir_dic[self.__dir_int]
