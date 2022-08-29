@@ -27,9 +27,15 @@ class RoverTestCase(unittest.TestCase):
     def test_print_pos(self):
         self.assertEqual(self.oppy.pos(), "0:0:N")
 
-    def test_move_move_north(self):
+    def test_move_north(self):
         self.oppy.exe("M")
         self.assertEqual(self.oppy.pos(), "0:1:N")
+        self.oppy.exe("M")
+        self.assertEqual(self.oppy.pos(), "0:2:N")
+
+    def test_exe_MM(self):
+        self.oppy.exe("MM")
+        self.assertEqual(self.oppy.pos(), "0:2:N")
 
 
 if __name__ == '__main__':
