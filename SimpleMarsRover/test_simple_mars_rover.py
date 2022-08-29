@@ -12,14 +12,24 @@ from SimpleMarsRover import MarsRover
 
 
 class RoverTestCase(unittest.TestCase):
+    def setUp(self) -> None:
+        self.oppy = MarsRover()
+
     def test_create_rover(self):
-        oppy = MarsRover()
-        self.assertTrue(isinstance(oppy, MarsRover), "Oppy is a Mars Rover")
+        self.assertTrue(isinstance(self.oppy, MarsRover),
+                        "Oppy is a Mars Rover")
 
     def test_init_position(self):
-        oppy = MarsRover(0, 0)
-        self.assertEqual(oppy.x, 0)
-        self.assertEqual(oppy.y, 0)
+        self.assertEqual(self.oppy.x, 0)
+        self.assertEqual(self.oppy.y, 0)
+        self.assertEqual(self.oppy.dir, "N")
+
+    def test_print_pos(self):
+        self.assertEqual(self.oppy.pos(), "0:0:N")
+
+    def test_move_move_north(self):
+        self.oppy.exe("M")
+        self.assertEqual(self.oppy.pos(), "0:1:N")
 
 
 if __name__ == '__main__':
