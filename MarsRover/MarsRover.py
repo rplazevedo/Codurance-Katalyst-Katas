@@ -5,6 +5,8 @@
 # @Author   : R.P.L. Azevedo
 # @Email    : rplazevedo@gmail.com
 # @Software : PyCharm
+import numpy as np
+
 
 class MarsRover:
     dir_dic = {0: "N", 1: "E", 2: "S", 3: "W"}
@@ -52,5 +54,5 @@ class MarsRover:
 
 
 class MarsPlateau:
-    def __init__(self):
-        pass
+    def __init__(self, size_x: int = 10, size_y: int = 10):
+        self._grid: np.ndarray = np.zeros((size_x, size_y))

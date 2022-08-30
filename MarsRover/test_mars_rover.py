@@ -15,3 +15,7 @@ Grid = MarsPlateau()
 
 def test_can_create_grid():
     assert isinstance(Grid, MarsPlateau)
+
+
+def test_grid_is_10_by_10():
+    assert Grid._grid.shape == (10, 10)
