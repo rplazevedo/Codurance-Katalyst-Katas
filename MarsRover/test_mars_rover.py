@@ -31,3 +31,14 @@ def test_add_multiple_obstacles():
     assert Plateau._grid[1, 2] == 1
     assert Plateau._grid[2, 3] == 1
     assert Plateau._grid[2, 2] == 0
+
+
+def test_is_obstacle_at_coord():
+    Plateau = MarsPlateau()
+    Plateau.add_obstacle((2, 2))
+    Plateau.is_obstacle_at_coord((2, 2))
+    assert Plateau.is_obstacle_at_coord((2, 2))
+
+
+def test_rover_move_up_obs():
+    pass

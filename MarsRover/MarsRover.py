@@ -63,3 +63,6 @@ class MarsPlateau:
 
     def add_obstacle(self, coord: tuple[int, int]):
         self._grid[coord] = 1
+
+    def is_obstacle_at_coord(self, coord: tuple[int, int]):
+        return self._grid[coord]
