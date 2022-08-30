@@ -6,8 +6,12 @@
 # @Email    : rplazevedo@gmail.com
 # @Software : PyCharm
 
-from MarsRover import MarsRover
+from MarsRover import MarsPlateau, MarsRover
 
 Spirit = MarsRover()
 
 Grid = MarsPlateau()
+
+
+def test_can_create_grid():
+    assert isinstance(Grid, MarsPlateau)

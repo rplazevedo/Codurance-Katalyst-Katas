@@ -51,4 +51,6 @@ class MarsRover:
             self.x = (self.x - 1) % 10
 
 
-clas
+class MarsPlateau:
+    def __init__(self):
+        pass
