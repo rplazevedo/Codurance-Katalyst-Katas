@@ -56,3 +56,6 @@ class MarsRover:
 class MarsPlateau:
     def __init__(self, size_x: int = 10, size_y: int = 10):
         self._grid: np.ndarray = np.zeros((size_x, size_y))
+
+    def add_obstacle(self, coord: tuple):
+        self._grid[coord] = 1

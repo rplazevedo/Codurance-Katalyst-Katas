@@ -10,12 +10,17 @@ from MarsRover import MarsPlateau, MarsRover
 
 Spirit = MarsRover()
 
-Grid = MarsPlateau()
+Plateau = MarsPlateau()
 
 
 def test_can_create_grid():
-    assert isinstance(Grid, MarsPlateau)
+    assert isinstance(Plateau, MarsPlateau)
 
 
 def test_grid_is_10_by_10():
-    assert Grid._grid.shape == (10, 10)
+    assert Plateau._grid.shape == (10, 10)
+
+
+def test_add_obstacle_at_2_2():
+    Plateau.add_obstacle((2, 2))
+    assert Plateau._grid[2, 2] == 1
