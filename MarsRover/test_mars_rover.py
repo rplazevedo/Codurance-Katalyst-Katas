@@ -6,7 +6,7 @@
 # @Email    : rplazevedo@gmail.com
 # @Software : PyCharm
 
-from MarsRover import MarsPlateau
+from MarsRover import MarsPlateau, MarsRover
 
 
 def test_can_create_grid():
@@ -40,5 +40,15 @@ def test_is_obstacle_at_coord():
     assert Plateau.is_obstacle_at_coord((2, 2))
 
 
-def test_rover_move_up_obs():
-    pass
+def test_rover_move_up_obs_at_0_1():
+    Plateau = MarsPlateau()
+    Rover = MarsRover()
+    Plateau.add_obstacle((0, 1))
+    assert Rover.exe("M", Plateau) == "O:0:0:N"
+
+
+def test_rover_move_up_obs_at_0_3():
+    Plateau = MarsPlateau()
+    Rover = MarsRover()
+    Plateau.add_obstacle((0, 3))
+    assert Rover.exe("MMMM", Plateau) == "O:0:2:N"
