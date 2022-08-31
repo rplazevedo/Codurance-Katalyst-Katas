@@ -98,3 +98,7 @@ def test_rover_move_up_obs_at_0_9(plateau, rover):
 def test_rover_move_up_obs_at_1_0(plateau, rover):
     plateau.add_obstacle((1, 0))
     assert rover.exe("MRMLMMMMMMMMMM", plateau) == "O:1:9:N"
+
+
+def test_rover_move_up_1000(plateau, rover):
+    assert rover.exe(1000 * "M", plateau) == "0:0:N"
