@@ -52,3 +52,10 @@ def test_rover_move_up_obs_at_0_3():
     Rover = MarsRover()
     Plateau.add_obstacle((0, 3))
     assert Rover.exe("MMMM", Plateau) == "O:0:2:N"
+
+
+def test_rover_move_up_obs_at_3_3():
+    Plateau = MarsPlateau()
+    Rover = MarsRover()
+    Plateau.add_obstacle((3, 3))
+    assert Rover.exe("RMMMLMMM", Plateau) == "O:3:2:N"

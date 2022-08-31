@@ -27,6 +27,8 @@ class MarsRover:
             self.exe_letter(letter, plateau)
             if self._obstacle_flag:
                 return f"O:{self.pos()}"
+        else:
+            return self.pos()
 
     def exe_letter(self, letter: str, plateau) -> None:
         if letter == "R":
