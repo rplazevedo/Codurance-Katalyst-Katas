@@ -26,6 +26,7 @@ class MarsRover:
         for letter in command:
             self.exe_letter(letter, plateau)
             if self._obstacle_flag:
+                self._obstacle_flag = False
                 return f"O:{self.pos()}"
         else:
             return self.pos()

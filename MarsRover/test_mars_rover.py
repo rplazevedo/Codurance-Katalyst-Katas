@@ -70,3 +70,15 @@ def test_rover_move_up_obs_at_0_3(plateau, rover):
 def test_rover_move_obs_at_3_3(plateau, rover, command, expected_output):
     plateau.add_obstacle((3, 3))
     assert rover.exe(command, plateau) == expected_output
+
+
+def test_rover_move_after_obstacle(plateau, rover):
+    plateau.add_obstacle((0, 3))
+    rover.exe("MMMM", plateau)
+    assert rover.exe("RMM", plateau) == "2:2:E"
+
+
+def test_rover_move_into_obstacle_twice(plateau, rover):
+    plateau.add_obstacle((0, 3))
+    rover.exe("MMMM", plateau)
+    assert rover.exe("MM", plateau) == "O:0:2:N"
