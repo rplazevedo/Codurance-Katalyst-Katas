@@ -48,17 +48,25 @@ class MarsRover:
 
     def move(self, plateau):
         if self.dir == "N":
-            # self.check_grid_for_obs((self.x, self.y + 1), plateau)
             if plateau.is_obstacle_at_coord((self.x, self.y + 1)):
                 self._obstacle_flag = True
             else:
                 self.y = (self.y + 1) % 10
         if self.dir == "E":
-            self.x = (self.x + 1) % 10
+            if plateau.is_obstacle_at_coord((self.x + 1, self.y)):
+                self._obstacle_flag = True
+            else:
+                self.x = (self.x + 1) % 10
         if self.dir == "S":
-            self.y = (self.y - 1) % 10
+            if plateau.is_obstacle_at_coord((self.x, self.y - 1)):
+                self._obstacle_flag = True
+            else:
+                self.y = (self.y - 1) % 10
         if self.dir == "W":
-            self.x = (self.x - 1) % 10
+            if plateau.is_obstacle_at_coord((self.x - 1, self.y)):
+                self._obstacle_flag = True
+            else:
+                self.x = (self.x - 1) % 10
 
     def check_grid_for_obs(self, next_coord: tuple[int, int], plateau):
         if plateau.is_obstacle_at_coord(next_coord):

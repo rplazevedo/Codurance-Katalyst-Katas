@@ -62,6 +62,11 @@ def test_rover_move_up_obs_at_0_3(plateau, rover):
     assert rover.exe("MMMM", plateau) == "O:0:2:N"
 
 
-def test_rover_move_up_obs_at_3_3(plateau, rover):
+@pytest.mark.parametrize("command,expected_output",
+                         [("RMMMLMMM", "O:3:2:N"),
+                          ("MMMRMMM", "O:2:3:E"),
+                          ("MMMMRMMMRM", "O:3:4:S"),
+                          ("RMMMMLMMMLM", "O:4:3:W")])
+def test_rover_move_obs_at_3_3(plateau, rover, command, expected_output):
     plateau.add_obstacle((3, 3))
-    assert rover.exe("RMMMLMMM", plateau) == "O:3:2:N"
+    assert rover.exe(command, plateau) == expected_output
