@@ -88,3 +88,13 @@ def test_rover_move_into_two_obstacles(plateau, rover):
     plateau.add_mutiple_obstacles([(0, 3), (4, 2)])
     rover.exe("MMMM", plateau)
     assert rover.exe("RMMMMM", plateau) == "O:3:2:E"
+
+
+def test_rover_move_up_obs_at_0_9(plateau, rover):
+    plateau.add_obstacle((0, 9))
+    assert rover.exe("RRM", plateau) == "O:0:0:S"
+
+
+def test_rover_move_up_obs_at_1_0(plateau, rover):
+    plateau.add_obstacle((1, 0))
+    assert rover.exe("MRMLMMMMMMMMMM", plateau) == "O:1:9:N"

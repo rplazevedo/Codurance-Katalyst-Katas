@@ -55,25 +55,29 @@ class MarsRover:
         move_direction[self.dir](plateau)
 
     def move_west(self, plateau):
-        if plateau.is_obstacle_at_coord((self.x - 1, self.y)):
+        next_coord = (self.x - 1, self.y)
+        if plateau.is_obstacle_at_coord(next_coord):
             self._obstacle_flag = True
         else:
             self.x = (self.x - 1) % 10
 
     def move_south(self, plateau):
-        if plateau.is_obstacle_at_coord((self.x, self.y - 1)):
+        next_coord = (self.x, self.y - 1)
+        if plateau.is_obstacle_at_coord(next_coord):
             self._obstacle_flag = True
         else:
             self.y = (self.y - 1) % 10
 
     def move_east(self, plateau):
-        if plateau.is_obstacle_at_coord((self.x + 1, self.y)):
+        next_coord = ((self.x + 1) % 10, self.y)
+        if plateau.is_obstacle_at_coord(next_coord):
             self._obstacle_flag = True
         else:
             self.x = (self.x + 1) % 10
 
     def move_north(self, plateau):
-        if plateau.is_obstacle_at_coord((self.x, self.y + 1)):
+        next_coord = (self.x, (self.y + 1) % 10)
+        if plateau.is_obstacle_at_coord(next_coord):
             self._obstacle_flag = True
         else:
             self.y = (self.y + 1) % 10
