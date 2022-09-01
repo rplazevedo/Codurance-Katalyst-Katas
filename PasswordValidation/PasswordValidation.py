@@ -7,4 +7,5 @@
 # @Software : PyCharm
 
 class PasswordValidator:
-    raise Exception("not implemented")
+    def __init__(self):
+        pass

@@ -12,7 +12,9 @@ from PasswordValidation import PasswordValidator
 
 
 @pytest.fixture()
-def validator():
+def password_validator():
     yield PasswordValidator()
 
-def test_create_password_validator():
+
+def test_create_password_validator(password_validator):
+    assert isinstance(password_validator, PasswordValidator)
