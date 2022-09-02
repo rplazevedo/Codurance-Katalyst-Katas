@@ -16,9 +16,10 @@ class PasswordValidator:
 
     @staticmethod
     def validate(password: str) -> bool:
-        if len(password) <= 8:
-            return PasswordValidator.invalid
-        elif password != password.upper():
+        conditions = (len(password) <= 8
+                      or password == password.lower()
+                      or password == password.upper())
+        if conditions:
             return PasswordValidator.invalid
         else:
             return PasswordValidator.valid

@@ -30,3 +30,7 @@ def test_password_less_than_8_characters(password_validator):
 
 def test_password_has_uppercase_letter(password_validator):
     assert PasswordValidator.validate("abcdefgij") == False
+
+
+def test_password_has_lowercase_letter(password_validator):
+    assert PasswordValidator.validate("AAAAAAAAA") == False
