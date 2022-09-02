@@ -11,9 +11,14 @@ class PasswordValidator:
     def __init__(self):
         pass
 
-    invalid = "Invalid password."
-    valid = "Valid Password."
+    invalid = False
+    valid = True
 
     @staticmethod
-    def validate(password: str):
-        return PasswordValidator.invalid
+    def validate(password: str) -> bool:
+        if len(password) <= 8:
+            return PasswordValidator.invalid
+        elif password != password.upper():
+            return PasswordValidator.invalid
+        else:
+            return PasswordValidator.valid

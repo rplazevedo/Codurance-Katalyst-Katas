@@ -20,9 +20,13 @@ def test_create_password_validator(password_validator):
     assert isinstance(password_validator, PasswordValidator)
 
 
-invalid = "Invalid password."
-valid = "Valid Password."
-
-
 def test_can_input_password(password_validator):
-    assert PasswordValidator.validate("password") == invalid
+    assert PasswordValidator.validate("password") == False
+
+
+def test_password_less_than_8_characters(password_validator):
+    assert PasswordValidator.validate("abcdj") == False
+
+
+def test_password_has_uppercase_letter(password_validator):
+    assert PasswordValidator.validate("abcdefgij") == False
