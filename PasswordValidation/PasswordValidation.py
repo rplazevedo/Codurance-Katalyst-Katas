@@ -6,6 +6,14 @@
 # @Email    : rplazevedo@gmail.com
 # @Software : PyCharm
 
+
 class PasswordValidator:
     def __init__(self):
         pass
+
+    invalid = "Invalid password."
+    valid = "Valid Password."
+
+    @staticmethod
+    def validate(password: str):
+        return PasswordValidator.invalid

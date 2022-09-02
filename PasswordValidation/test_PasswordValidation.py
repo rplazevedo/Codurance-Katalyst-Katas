@@ -18,3 +18,11 @@ def password_validator():
 
 def test_create_password_validator(password_validator):
     assert isinstance(password_validator, PasswordValidator)
+
+
+invalid = "Invalid password."
+valid = "Valid Password."
+
+
+def test_can_input_password(password_validator):
+    assert PasswordValidator.validate("password") == invalid
