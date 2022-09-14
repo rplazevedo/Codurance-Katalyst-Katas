@@ -6,8 +6,20 @@
 # @Email    : rplazevedo@gmail.com
 # @Software : PyCharm
 
+from abc import ABC, abstractmethod
 
-class PasswordValidator:
+
+class PasswordValidator(ABC):
+    invalid = False
+    valid = True
+
+    @staticmethod
+    @abstractmethod
+    def validate(password: str) -> bool:
+        raise NotImplementedError
+
+
+class StandardValidator:
     def __init__(self):
         pass
 
@@ -20,12 +32,12 @@ class PasswordValidator:
                       or password.islower()
                       or password.isupper()
                       or password.isnumeric()
-                      or not PasswordValidator.contains_number(password)
-                      or not PasswordValidator.contains_underscore(password))
+                      or not StandardValidator.contains_number(password)
+                      or not StandardValidator.contains_underscore(password))
         if conditions:
-            return PasswordValidator.invalid
+            return StandardValidator.invalid
         else:
-            return PasswordValidator.valid
+            return StandardValidator.valid
 
     @staticmethod
     def contains_number(password: str) -> bool:

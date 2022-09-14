@@ -8,41 +8,41 @@
 
 import pytest
 
-from PasswordValidation import PasswordValidator
+from PasswordValidation import StandardValidator
 
 
 @pytest.fixture()
-def password_validator():
-    yield PasswordValidator()
+def standard_validator():
+    yield StandardValidator()
 
 
-def test_create_password_validator(password_validator):
-    assert isinstance(password_validator, PasswordValidator)
+def test_create_password_validator(standard_validator):
+    assert isinstance(standard_validator, StandardValidator)
 
 
-def test_can_input_password(password_validator):
-    assert PasswordValidator.validate("password") == False
+def test_can_input_password(standard_validator):
+    assert StandardValidator.validate("password") == False
 
 
-def test_password_less_than_8_characters(password_validator):
-    assert PasswordValidator.validate("abcdj") == False
+def test_password_less_than_8_characters(standard_validator):
+    assert StandardValidator.validate("abcdj") == False
 
 
-def test_password_has_uppercase_letter(password_validator):
-    assert PasswordValidator.validate("abcdefgij") == False
+def test_password_has_uppercase_letter(standard_validator):
+    assert StandardValidator.validate("abcdefgij") == False
 
 
-def test_password_has_lowercase_letter(password_validator):
-    assert PasswordValidator.validate("AAAAAAAAA") == False
+def test_password_has_lowercase_letter(standard_validator):
+    assert StandardValidator.validate("AAAAAAAAA") == False
 
 
-def test_password_has_number(password_validator):
-    assert PasswordValidator.validate("Aaaaaaaaa") == False
+def test_password_has_number(standard_validator):
+    assert StandardValidator.validate("Aaaaaaaaa") == False
 
 
-def test_password_has_underscore(password_validator):
-    assert PasswordValidator.validate("Aaaaaaaa1") == False
+def test_password_has_underscore(standard_validator):
+    assert StandardValidator.validate("Aaaaaaaa1") == False
 
 
-def test_password_has_all_conditions(password_validator):
-    assert PasswordValidator.validate("Aaaaaaa_1") == True
+def test_password_has_all_conditions(standard_validator):
+    assert StandardValidator.validate("Aaaaaaa_1") == True
