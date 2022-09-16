@@ -14,14 +14,11 @@ class Director:
     Construct an object using the Builder interface.
     """
 
-    def __init__(self):
-        self._builder = None
+    def __init__(self) -> None:
+        self.builder = None
 
-    def construct(self, builder):
-        self._builder = builder
-        self._builder._build_part_a()
-        self._builder._build_part_b()
-        self._builder._build_part_c()
+    def builder(self, builder) -> None:
+        self.builder = builder
 
 
 class Builder(ABC):
@@ -35,23 +32,24 @@ class Builder(ABC):
         pass
 
     @abstractmethod
-    def _set_min_number_characters(self, min_number_characters: int) -> None:
+    def min_number_characters(self, min_number_characters: int) -> None:
         pass
 
     @abstractmethod
-    def _set_with_uppercase(self) -> None:
+    def need_uppercase(self) -> None:
         pass
 
     @abstractmethod
-    def _set_with_lowercase(self) -> None:
+    def need_lowercase(self) -> None:
         pass
 
     @abstractmethod
-    def _set_with_underscore(self) -> None:
+    def need_underscore(self) -> None:
         pass
 
     @abstractmethod
-    def _set_with_number(self) -> None:
+    def need_number
+        (self) -> None:
         pass
 
 
@@ -66,20 +64,28 @@ class ValidatorBuilder(Builder):
     def __init__(self) -> None:
         self._validator = PasswordValidator()
 
-    def _min_number_characters(self, min_mumber_characters) -> None:
+    def min_number_characters(self, min_mumber_characters) -> None:
         self._validator._min_mumber_characters = min_mumber_characters
+        return self
 
-    def _with_uppercase(self) -> None:
+    def need_uppercase(self) -> None:
         self._validator._with_uppercase = True
+        return self
 
-    def _with_lowercase(self) -> None:
+    def need_lowercase(self) -> None:
         self._validator._with_lowercase = True
+        return self
 
-    def _with_underscore(self) -> None:
+    def need_underscore(self) -> None:
         self._validator._with_underscore = True
+        return self
 
-    def _with_number(self) -> None:
+    def need_number(self) -> None:
         self._validator._with_number = True
+        return self
+
+    def build(self):
+        return self._validator
 
 
 class PasswordValidator:
@@ -98,21 +104,46 @@ class PasswordValidator:
     valid = True
 
     def validate(self, password: str) -> bool:
-        raise NotImplementedError
+        if not self.above_min_length(password):
+            return self.invalid
+        if self._with_lowercase and not self.has_lowercase(password):
+            return self.invalid
+        if self._with_uppercase and not self.has_uppercase(password):
+            return self.invalid
+        if self._with_underscore and not self.has_underscore(password):
+            return self.invalid
+        if self._with_number and not self.has_number(password):
+            return self.invalid
+        return self.valid
+
+    def above_min_length(self, password: str) -> bool:
+        return len(password) >= self._min_mumber_characters
 
     @staticmethod
-    def contains_number(self, password: str) -> bool:
-        for character in password:
-            if character.isnumeric():
-                return True
-        return False
+    def has_uppercase(password: str) -> bool:
+        return not password.islower()
 
     @staticmethod
-    def contains_underscore(password: str) -> bool:
-        for character in password:
-            if character == "_":
-                return True
-        return False
+    def has_lowercase(password: str) -> bool:
+        return not password.isupper()
+
+    @staticmethod
+    def has_number(password: str) -> bool:
+        found_number = False
+        i = 0
+        while not found_number and i < len(password):
+            found_number = password[i].isnumeric()
+            i += 1
+        return found_number
+
+    @staticmethod
+    def has_underscore(password: str) -> bool:
+        found_underscore = False
+        i = 0
+        while not found_underscore and i < len(password):
+            found_underscore = password[i] == "_"
+            i += 1
+        return found_underscore
 
 
 class StandardValidator:

@@ -13,15 +13,18 @@ from PasswordValidation import *
 
 @pytest.fixture()
 def standard_validator():
-    # validator_builder = StandardBuilder()
-    # validator_director = Director()
-    # validator_director.construct(validator_builder)
-    # validator = validator_builder.validator
-    yield StandardValidator()
+    validator_builder = ValidatorBuilder()
+    director = Director()
+    director.builder = validator_builder
+    director.builder.min_number_characters(
+            9).need_underscore().need_number().need_lowercase(
+            ).need_uppercase()
+    standard_validator = director.builder.build()
+    yield standard_validator
 
 
 def test_create_password_validator(standard_validator):
-    assert isinstance(standard_validator, StandardValidator)
+    assert isinstance(standard_validator, PasswordValidator)
 
 
 def test_can_input_password(standard_validator):
