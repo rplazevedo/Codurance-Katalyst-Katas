@@ -8,11 +8,15 @@
 
 import pytest
 
-from PasswordValidation import StandardValidator
+from PasswordValidation import *
 
 
 @pytest.fixture()
 def standard_validator():
+    # validator_builder = StandardBuilder()
+    # validator_director = Director()
+    # validator_director.construct(validator_builder)
+    # validator = validator_builder.validator
     yield StandardValidator()
 
 
@@ -21,28 +25,28 @@ def test_create_password_validator(standard_validator):
 
 
 def test_can_input_password(standard_validator):
-    assert StandardValidator.validate("password") == False
+    assert standard_validator.validate("password") is False
 
 
 def test_password_less_than_8_characters(standard_validator):
-    assert StandardValidator.validate("abcdj") == False
+    assert standard_validator.validate("abcdj") is False
 
 
 def test_password_has_uppercase_letter(standard_validator):
-    assert StandardValidator.validate("abcdefgij") == False
+    assert standard_validator.validate("abcdefgij") is False
 
 
 def test_password_has_lowercase_letter(standard_validator):
-    assert StandardValidator.validate("AAAAAAAAA") == False
+    assert standard_validator.validate("AAAAAAAAA") is False
 
 
 def test_password_has_number(standard_validator):
-    assert StandardValidator.validate("Aaaaaaaaa") == False
+    assert standard_validator.validate("Aaaaaaaaa") is False
 
 
 def test_password_has_underscore(standard_validator):
-    assert StandardValidator.validate("Aaaaaaaa1") == False
+    assert standard_validator.validate("Aaaaaaaa1") is False
 
 
 def test_password_has_all_conditions(standard_validator):
-    assert StandardValidator.validate("Aaaaaaa_1") == True
+    assert standard_validator.validate("Aaaaaaa_1") is True
