@@ -34,6 +34,19 @@ def validator_2():
     yield validator
 
 
+@pytest.fixture()
+def validator_3():
+    validator_builder = ValidatorBuilder()
+    director = Director()
+    director.builder = validator_builder
+    director.builder.min_number_characters(17)
+    director.builder.need_underscore()
+    director.builder.need_lowercase()
+    director.builder.need_uppercase()
+    validator = director.builder.build()
+    yield validator
+
+
 def test_create_password_validator(standard_validator):
     assert isinstance(standard_validator, PasswordValidator)
 
@@ -66,7 +79,7 @@ def test_password_has_all_conditions(standard_validator):
     assert standard_validator.validate("Aaaaaaa_1") is True
 
 
-def test_2nd_validator_less_than_5_characters(validator_2):
+def test_2nd_validator_less_than_7_characters(validator_2):
     assert validator_2.validate("Aa_4") is False
 
 
@@ -76,3 +89,15 @@ def test_2nd_validator_no_number(validator_2):
 
 def test_2nd_validator_pass(validator_2):
     assert validator_2.validate("Aaaa1235") is True
+
+
+def test_3nd_validator_less_than_17_characters(validator_3):
+    assert validator_3.validate("Aa_aaaa6") is False
+
+
+def test_3nd_validator_no_underscore(validator_3):
+    assert validator_3.validate("Aa1aaaaaaaaaaaaaaaaaaaaaaaaaaa") is False
+
+
+def test_3nd_validator_pass(validator_3):
+    assert validator_3.validate("Aaaa_aaaaaaaaaaaaaaaaaaa1") is True

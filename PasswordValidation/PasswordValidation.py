@@ -88,7 +88,7 @@ class ValidatorBuilder(Builder):
 
 
 class PasswordValidator:
-    def __init__(self, min_mumber_characters: int = 6,
+    def __init__(self, min_mumber_characters: int = 0,
                  with_uppercase: bool = False,
                  with_lowercase: bool = False,
                  with_number: bool = False,
