@@ -74,5 +74,5 @@ def test_2nd_validator_no_number(validator_2):
     assert validator_2.validate("Aa_aaaaa") is False
 
 
-def test_2nd_validator_no_number(validator_2):
+def test_2nd_validator_pass(validator_2):
     assert validator_2.validate("Aaaa1235") is True
