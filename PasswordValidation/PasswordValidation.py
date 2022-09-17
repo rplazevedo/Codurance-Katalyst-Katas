@@ -48,8 +48,7 @@ class Builder(ABC):
         pass
 
     @abstractmethod
-    def need_number
-        (self) -> None:
+    def need_number(self) -> None:
         pass
 
 
@@ -64,23 +63,23 @@ class ValidatorBuilder(Builder):
     def __init__(self) -> None:
         self._validator = PasswordValidator()
 
-    def min_number_characters(self, min_mumber_characters) -> None:
+    def min_number_characters(self, min_mumber_characters):
         self._validator._min_mumber_characters = min_mumber_characters
         return self
 
-    def need_uppercase(self) -> None:
+    def need_uppercase(self) -> Builder:
         self._validator._with_uppercase = True
         return self
 
-    def need_lowercase(self) -> None:
+    def need_lowercase(self):
         self._validator._with_lowercase = True
         return self
 
-    def need_underscore(self) -> None:
+    def need_underscore(self):
         self._validator._with_underscore = True
         return self
 
-    def need_number(self) -> None:
+    def need_number(self):
         self._validator._with_number = True
         return self
 
