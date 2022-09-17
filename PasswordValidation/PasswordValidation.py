@@ -102,18 +102,25 @@ class PasswordValidator:
     invalid = False
     valid = True
 
-    def validate(self, password: str) -> bool:
+    def validate(self, password: str) -> tuple[bool, str]:
+        flag = self.valid
+        errors = ''
         if not self.above_min_length(password):
-            return self.invalid
+            flag = self.invalid
+            errors += "Too short\n"
         if self._with_lowercase and not self.has_lowercase(password):
-            return self.invalid
+            flag = self.invalid
+            errors += "No lowercase\n"
         if self._with_uppercase and not self.has_uppercase(password):
-            return self.invalid
-        if self._with_underscore and not self.has_underscore(password):
-            return self.invalid
+            flag = self.invalid
+            errors += "No uppercase\n"
         if self._with_number and not self.has_number(password):
-            return self.invalid
-        return self.valid
+            flag = self.invalid
+            errors += "No number\n"
+        if self._with_underscore and not self.has_underscore(password):
+            flag = self.invalid
+            errors += "No underscore\n"
+        return flag, errors
 
     def above_min_length(self, password: str) -> bool:
         return len(password) >= self._min_mumber_characters
