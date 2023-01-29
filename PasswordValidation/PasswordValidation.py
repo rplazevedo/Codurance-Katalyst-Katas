@@ -88,11 +88,14 @@ class ValidatorBuilder(Builder):
 
 
 class PasswordValidator:
-    def __init__(self, min_mumber_characters: int = 0,
-                 with_uppercase: bool = False,
-                 with_lowercase: bool = False,
-                 with_number: bool = False,
-                 with_underscore: bool = False) -> None:
+    def __init__(
+        self,
+        min_mumber_characters: int = 0,
+        with_uppercase: bool = False,
+        with_lowercase: bool = False,
+        with_number: bool = False,
+        with_underscore: bool = False,
+    ) -> None:
         self._min_mumber_characters = min_mumber_characters
         self._with_uppercase = with_uppercase
         self._with_lowercase = with_lowercase
@@ -104,7 +107,7 @@ class PasswordValidator:
 
     def validate(self, password: str) -> tuple[bool, str]:
         flag = self.valid
-        errors = ''
+        errors = ""
         if not self.above_min_length(password):
             flag = self.invalid
             errors += "Too short\n"
@@ -160,12 +163,14 @@ class StandardValidator:
     valid = True
 
     def validate(self, password: str) -> bool:
-        conditions = (len(password) <= 8
-                      or password.islower()
-                      or password.isupper()
-                      or password.isnumeric()
-                      or not StandardValidator.contains_number(password)
-                      or not StandardValidator.contains_underscore(password))
+        conditions = (
+            len(password) <= 8
+            or password.islower()
+            or password.isupper()
+            or password.isnumeric()
+            or not StandardValidator.contains_number(password)
+            or not StandardValidator.contains_underscore(password)
+        )
         if conditions:
             return self.invalid
         else:

@@ -6,11 +6,11 @@
 # @Email    : rplazevedo@gmail.com
 # @Software : PyCharm
 
+
 class MarsRover:
     dir_dic = {0: "N", 1: "E", 2: "S", 3: "W"}
 
-    def __init__(self, x_init: int = 0, y_init: int = 0, dir_init: str = "N") \
-            -> None:
+    def __init__(self, x_init: int = 0, y_init: int = 0, dir_init: str = "N") -> None:
         dir_dic_rev = {"N": 0, "E": 1, "S": 2, "W": 3}
         self.x: int = x_init
         self.y: int = y_init

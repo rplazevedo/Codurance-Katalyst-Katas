@@ -6,6 +6,7 @@
 # @Email    : rplazevedo@gmail.com
 # @Software : PyCharm
 
+
 def fizz_buzz(number) -> str:
     if number % 15 == 0:
         return "FizzBuzz"

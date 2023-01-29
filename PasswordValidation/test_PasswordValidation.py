@@ -8,7 +8,7 @@
 
 import pytest
 
-from PasswordValidation import *
+from PasswordValidation import Director, ValidatorBuilder, PasswordValidator
 
 
 @pytest.fixture()
@@ -17,8 +17,8 @@ def standard_validator():
     director = Director()
     director.builder = validator_builder
     director.builder.min_number_characters(
-            9).need_underscore().need_number().need_lowercase(
-            ).need_uppercase()
+        9
+    ).need_underscore().need_number().need_lowercase().need_uppercase()
     standard_validator = director.builder.build()
     yield standard_validator
 
@@ -28,8 +28,9 @@ def validator_2():
     validator_builder = ValidatorBuilder()
     director = Director()
     director.builder = validator_builder
-    director.builder.min_number_characters(7).need_number().need_lowercase(
-            ).need_uppercase()
+    director.builder.min_number_characters(
+        7
+    ).need_number().need_lowercase().need_uppercase()
     validator = director.builder.build()
     yield validator
 
@@ -52,44 +53,42 @@ def test_create_password_validator(standard_validator):
 
 
 def test_can_input_password(standard_validator):
-    assert standard_validator.validate("password") == (False, "Too short\n"
-                                                              "No uppercase\n"
-                                                              "No number\n"
-                                                              "No "
-                                                              "underscore\n")
+    assert standard_validator.validate("password") == (
+        False,
+        "Too short\n" "No uppercase\n" "No number\n" "No " "underscore\n",
+    )
 
 
 def test_password_less_than_8_characters(standard_validator):
-    assert standard_validator.validate("abcdj") == (False, "Too short\n"
-                                                           "No uppercase\n"
-                                                           "No number\n"
-                                                           "No "
-                                                           "underscore\n")
+    assert standard_validator.validate("abcdj") == (
+        False,
+        "Too short\n" "No uppercase\n" "No number\n" "No " "underscore\n",
+    )
 
 
 def test_password_has_uppercase_letter(standard_validator):
-    assert standard_validator.validate("abcdefgij") == (False, "No uppercase\n"
-                                                               "No number\n"
-                                                               "No "
-                                                               "underscore\n")
+    assert standard_validator.validate("abcdefgij") == (
+        False,
+        "No uppercase\n" "No number\n" "No " "underscore\n",
+    )
 
 
 def test_password_has_lowercase_letter(standard_validator):
-    assert standard_validator.validate("AAAAAAAAA") == (False, "No lowercase\n"
-                                                               "No number\n"
-                                                               "No "
-                                                               "underscore\n")
+    assert standard_validator.validate("AAAAAAAAA") == (
+        False,
+        "No lowercase\n" "No number\n" "No " "underscore\n",
+    )
 
 
 def test_password_has_number(standard_validator):
-    assert standard_validator.validate("Aaaaaaaaa") == (False, "No number\n"
-                                                               "No "
-                                                               "underscore\n")
+    assert standard_validator.validate("Aaaaaaaaa") == (
+        False,
+        "No number\n" "No " "underscore\n",
+    )
 
 
 def test_password_has_underscore(standard_validator):
-    assert standard_validator.validate("Aaaaaaaa1") == (False, "No "
-                                                               "underscore\n")
+    assert standard_validator.validate("Aaaaaaaa1") == (False, "No " "underscore\n")
 
 
 def test_password_has_all_conditions(standard_validator):
@@ -113,8 +112,7 @@ def test_3nd_validator_less_than_17_characters(validator_3):
 
 
 def test_3nd_validator_no_underscore(validator_3):
-    assert validator_3.validate("Aa1aaaaaaaaaaaaaa") == (False,
-                                                         "No underscore\n")
+    assert validator_3.validate("Aa1aaaaaaaaaaaaaa") == (False, "No underscore\n")
 
 
 def test_3nd_validator_pass(validator_3):

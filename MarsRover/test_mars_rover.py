@@ -11,15 +11,15 @@ import pytest
 from MarsRover import MarsPlateau, MarsRover
 
 
-@pytest.fixture()
-def plateau():
+@pytest.fixture(name="plateau")
+def fixture_plateau():
     # print("setup")
     yield MarsPlateau()
     # print("teardown")
 
 
-@pytest.fixture()
-def rover():
+@pytest.fixture(name="rover")
+def fixture_rover():
     # print("setup")
     yield MarsRover()
     # print("teardown")
@@ -62,11 +62,15 @@ def test_rover_move_up_obs_at_0_3(plateau, rover):
     assert rover.exe("MMMM", plateau) == "O:0:2:N"
 
 
-@pytest.mark.parametrize("command,expected_output",
-                         [("RMMMLMMM", "O:3:2:N"),
-                          ("MMMRMMM", "O:2:3:E"),
-                          ("MMMMRMMMRM", "O:3:4:S"),
-                          ("RMMMMLMMMLM", "O:4:3:W")])
+@pytest.mark.parametrize(
+    "command,expected_output",
+    [
+        ("RMMMLMMM", "O:3:2:N"),
+        ("MMMRMMM", "O:2:3:E"),
+        ("MMMMRMMMRM", "O:3:4:S"),
+        ("RMMMMLMMMLM", "O:4:3:W"),
+    ],
+)
 def test_rover_move_obs_at_3_3(plateau, rover, command, expected_output):
     plateau.add_obstacle((3, 3))
     assert rover.exe(command, plateau) == expected_output

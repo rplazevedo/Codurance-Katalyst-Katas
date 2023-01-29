@@ -48,10 +48,12 @@ class MarsRover:
         self.dir = self.dir_dic[self.__dir_int]
 
     def move(self, plateau):
-        move_direction = {"N": self.move_north,
-                          "S": self.move_south,
-                          "E": self.move_east,
-                          "W": self.move_west}
+        move_direction = {
+            "N": self.move_north,
+            "S": self.move_south,
+            "E": self.move_east,
+            "W": self.move_west,
+        }
         move_direction[self.dir](plateau)
 
     def move_west(self, plateau):

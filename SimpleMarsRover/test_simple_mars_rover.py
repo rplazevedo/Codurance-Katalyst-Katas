@@ -16,8 +16,7 @@ class RoverTestCase(unittest.TestCase):
         self.oppy = MarsRover()
 
     def test_create_rover(self):
-        self.assertTrue(isinstance(self.oppy, MarsRover),
-                        "Oppy is a Mars Rover")
+        self.assertTrue(isinstance(self.oppy, MarsRover), "Oppy is a Mars Rover")
 
     def test_init_position(self):
         self.assertEqual(self.oppy.x, 0)
@@ -102,5 +101,5 @@ class RoverTestCase(unittest.TestCase):
         self.assertEqual(self.oppy.pos(), "0:0:N")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

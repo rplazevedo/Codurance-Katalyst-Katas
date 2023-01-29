@@ -1,0 +1,11 @@
+{
+    "python.analysis.fixAll": [],
+    "python.analysis.extraPaths": [
+        "./FizzBuzz",
+        "./LeapYear",
+        "./MarsRover",
+        "./PasswordValidation",
+        "./RomanNumerals",
+        "./SimpleMarsRover"
+    ]
+}
